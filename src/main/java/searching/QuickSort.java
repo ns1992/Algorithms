@@ -1,7 +1,5 @@
 package searching;
 
-import searching.utils.SearchUtils;
-
 import static searching.utils.SearchUtils.swap;
 
 public class QuickSort {
