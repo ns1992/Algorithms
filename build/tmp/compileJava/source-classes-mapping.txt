@@ -1,6 +1,0 @@
-searching/MergeSort.java
- searching.MergeSort
-Main.java
- Main
-searching/BubbleSort.java
- searching.BubbleSort
