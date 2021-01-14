@@ -1,5 +1,7 @@
 package searching;
 
+import static searching.utils.SearchUtils.swap;
+
 public class SelectionSort {
 
     public void sort(int[] array) {
@@ -14,12 +16,5 @@ public class SelectionSort {
 
             swap(array, min, i);
         }
-    }
-
-
-    private void swap(int[] array, int indexOne, int indexTwo) {
-        int temp = array[indexOne];
-        array[indexOne] = array[indexTwo];
-        array[indexTwo] = temp;
     }
 }
