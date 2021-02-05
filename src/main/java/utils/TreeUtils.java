@@ -1,4 +1,4 @@
-package searching.utils;
+package utils;
 
 
 import searching.tree.Node;

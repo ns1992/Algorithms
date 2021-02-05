@@ -1,8 +1,5 @@
-package searching.designPatterns;
+package designPatterns;
 
-import designPatterns.DecoratorA;
-import designPatterns.DecoratorB;
-import designPatterns.DecoratorBase;
 import org.junit.jupiter.api.Test;
 
 class DecoratorATest {

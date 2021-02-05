@@ -1,4 +1,4 @@
-package searching.utils;
+package utils;
 
 import java.util.*;
 import java.util.stream.Collectors;

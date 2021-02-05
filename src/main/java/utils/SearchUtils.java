@@ -1,4 +1,4 @@
-package searching.utils;
+package utils;
 
 public final class SearchUtils {
 
