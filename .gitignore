@@ -2,3 +2,5 @@
 .gradle/**
 .idea/workspace.xml
 /build/**
+.idea/uiDesigner.xml
+*.class

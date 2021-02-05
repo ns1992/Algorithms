@@ -1,45 +1,48 @@
 package searching;
 
+import java.util.Arrays;
+
 public class MergeSort {
 
-    public void sort(int[] array) {
-        int[] helper = new int[array.length];
-        sort(array, helper, 0, array.length - 1);
+
+    public void sort(final int[] array) {
+        final int[] helper = new int[array.length];
+        mergeSort(array, helper, 0, array.length - 1);
     }
 
-    private void sort(int[] array, int[] helper, int low, int high) {
-        if (low < high) {
-            int middle = low + (high - low) / 2;
-            sort(array, helper, low, middle);
-            sort(array, helper, middle + 1, high);
+    private void mergeSort(final int[] array, final int[] helper, final int low, final int high) {
+        if(low < high) {
+            final int middle = low + (high - low)/2;
+            mergeSort(array, helper, low, middle);
+            mergeSort(array, helper, middle + 1, high);
             merge(array, helper, low, middle, high);
         }
     }
 
-
-    private void merge(int[] array, int[] helper, int low, int middle, int high) {
-        for (int i = low; i <= high; i++) {
+    public void merge(final int[] array, final int[] helper, final int low, final int middle, final int high) {
+        for(int i = low; i <= high; i++) {
             helper[i] = array[i];
         }
 
-        int helperLeft = low;
-        int helperRight = middle + 1;
+        int hL = low;
+        int hR = middle + 1;
         int current = low;
 
-        while (helperLeft <= middle && helperRight <= high) {
-            if (helper[helperLeft] <= helper[helperRight]) {
-                array[current] = helper[helperLeft];
-                helperLeft++;
+        while (hL <= middle && hR <= high) {
+            if(helper[hL] <= helper[hR]) {
+                array[current] = helper[hL];
+                hL++;
             } else {
-                array[current] = helper[helperRight];
-                helperRight++;
+                array[current] = helper[hR];
+                hR++;
             }
             current++;
         }
 
-        int remaining = middle - helperLeft;
-        for (int i = 0; i <= remaining; i++) {
-            array[current + i] = helper[helperLeft + i];
+
+        int remaining = middle - hL;
+        for(int i = 0; i <= remaining; i++) {
+            array[current + i] = helper[hL + i];
         }
     }
 }
