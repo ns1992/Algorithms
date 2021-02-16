@@ -61,16 +61,18 @@ public class TreeUtils {
     private static NodeSequence postorderRecursive(final Node currentNode,
                                                    final Predicate<Node> traversalPredicate,
                                                    final NodeSequence nodeSequence) {
-        if(null != currentNode) {
+        if (null != currentNode) {
             // Search left
-            if(postorderRecursive(currentNode.left, traversalPredicate, nodeSequence).getTargetNode().isPresent()) return nodeSequence;
+            if (postorderRecursive(currentNode.left, traversalPredicate, nodeSequence).getTargetNode().isPresent())
+                return nodeSequence;
 
             // Search right
-            if(postorderRecursive(currentNode.right, traversalPredicate, nodeSequence).getTargetNode().isPresent()) return nodeSequence;
+            if (postorderRecursive(currentNode.right, traversalPredicate, nodeSequence).getTargetNode().isPresent())
+                return nodeSequence;
 
             // Search current
             nodeSequence.addTraversedNode(currentNode);
-            if(traversalPredicate.test(currentNode)) {
+            if (traversalPredicate.test(currentNode)) {
                 nodeSequence.setTargetNode(currentNode);
                 return nodeSequence;
             }
@@ -78,14 +80,6 @@ public class TreeUtils {
 
         return nodeSequence;
     }
-
-
-
-
-
-
-
-
 
 
     public static NodeSequence dfs(final Node currentNode,
