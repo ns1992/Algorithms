@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BubbleSortTest {
 
-    private BubbleSort bubbleSort = new BubbleSort();
+    private final BubbleSort bubbleSort = new BubbleSort();
 
     @Test
     public void testSort_whenMixed_ReturnsSorted() {

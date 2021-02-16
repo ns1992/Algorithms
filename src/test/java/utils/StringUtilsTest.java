@@ -8,8 +8,6 @@ class StringUtilsTest {
 
     @Test
     public void test() {
-        final int result = StringUtils.countChars("aabbccdd", 'a');
-
         assertEquals(2, StringUtils.countChars("aabbccdd", 'a'));
         assertEquals(2, StringUtils.countChars("aabbccdd", 'b'));
         assertEquals(6, StringUtils.countChars("aabbccccccdd", 'c'));

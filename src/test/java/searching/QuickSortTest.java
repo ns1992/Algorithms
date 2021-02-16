@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class QuickSortTest {
 
-    private QuickSort quickSort = new QuickSort();
+    private final QuickSort quickSort = new QuickSort();
 
     @Test
     public void testSort_whenMixed_ReturnsSorted() {

@@ -7,7 +7,7 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SelectionSortTest {
-    private SelectionSort selectionSort = new SelectionSort();
+    private final SelectionSort selectionSort = new SelectionSort();
 
     @Test
     public void testSort_whenMixed_ReturnsSorted() {

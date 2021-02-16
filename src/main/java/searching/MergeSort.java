@@ -1,7 +1,5 @@
 package searching;
 
-import java.util.Arrays;
-
 public class MergeSort {
 
 
