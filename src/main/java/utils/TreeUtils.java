@@ -5,11 +5,7 @@ import searching.tree.Node;
 import searching.tree.NodeSequence;
 
 import java.util.ArrayDeque;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
 import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class TreeUtils {
@@ -65,25 +61,31 @@ public class TreeUtils {
     private static NodeSequence postorderRecursive(final Node currentNode,
                                                    final Predicate<Node> traversalPredicate,
                                                    final NodeSequence nodeSequence) {
-        if (null != currentNode) {
-            // Search Left
-            if (postorderRecursive(currentNode.left, traversalPredicate, nodeSequence).getTargetNode().isPresent())
-                return nodeSequence;
+        if(null != currentNode) {
+            // Search left
+            if(postorderRecursive(currentNode.left, traversalPredicate, nodeSequence).getTargetNode().isPresent()) return nodeSequence;
 
-            // Search Right
-            if (postorderRecursive(currentNode.right, traversalPredicate, nodeSequence).getTargetNode().isPresent())
-                return nodeSequence;
+            // Search right
+            if(postorderRecursive(currentNode.right, traversalPredicate, nodeSequence).getTargetNode().isPresent()) return nodeSequence;
 
-            //Search current node
+            // Search current
             nodeSequence.addTraversedNode(currentNode);
-            if (traversalPredicate.test(currentNode)) {
+            if(traversalPredicate.test(currentNode)) {
                 nodeSequence.setTargetNode(currentNode);
                 return nodeSequence;
             }
         }
 
-        return nodeSequence; // Predicate not satiated
+        return nodeSequence;
     }
+
+
+
+
+
+
+
+
 
 
     public static NodeSequence dfs(final Node currentNode,
@@ -207,7 +209,7 @@ public class TreeUtils {
     public static Node postOrderDepthFirstSearch(final Node root, final int toFind, final Consumer<Node> traverseOrder) {
         final ArrayDeque<Node> stack = new ArrayDeque<>();
         Node previouslyVisited = root;
-        Node current = root;
+        Node current;
         stack.push(root);
 
         while (!stack.isEmpty()) {
