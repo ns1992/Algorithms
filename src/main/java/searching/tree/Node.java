@@ -9,4 +9,11 @@ public class Node {
     public Node(final String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Node{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }
