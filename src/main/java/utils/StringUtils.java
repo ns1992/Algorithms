@@ -70,4 +70,28 @@ public class StringUtils {
         }
         return true;
     }
+
+
+    public static String longestPalindromaticString(final String input) {
+        for (int substringLength = input.length(); substringLength >= 0; substringLength--) {
+
+            // 'Slide' the substring over the input string, halting if you run off the end
+            for (int i = 0; i < input.length(); i++) {
+                int substringEndIndex = i + substringLength;
+                if (substringEndIndex > input.length()) {
+                    // run off detected - move to the next substring
+                    break;
+                } else {
+                    // If this substring is a palindrome it will be the largest found
+                    // Else we need to continue searching...
+                    final String substring = input.substring(i, substringEndIndex);
+                    if (isPalindrome(substring)) return substring;
+                }
+            }
+        }
+
+
+        // No palindromes found
+        return "";
+    }
 }

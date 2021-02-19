@@ -72,4 +72,16 @@ class StringUtilsTest {
 
     }
 
+    @Test
+    public void testLongestPalindromaticString() {
+        assertEquals("ana", StringUtils.longestPalindromaticString("ana"));
+        assertEquals("bab", StringUtils.longestPalindromaticString("babad"));
+        assertEquals("bb", StringUtils.longestPalindromaticString("cbbd"));
+        assertEquals("a", StringUtils.longestPalindromaticString("a"));
+        assertEquals("a", StringUtils.longestPalindromaticString("ac"));
+        assertEquals("aaaaaacaaaaaa", StringUtils.longestPalindromaticString("aaaaaacaaaaaaaaab"));
+        assertEquals("aba", StringUtils.longestPalindromaticString("abacdfgdcaba"));
+
+    }
+
 }
