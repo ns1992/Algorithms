@@ -50,6 +50,7 @@ class StringUtilsTest {
     @Test
     public void testIsPalindrome2() {
         assertTrue(StringUtils.isPalindrome2("aa".toCharArray()));
+        assertTrue(StringUtils.isPalindrome2("a".toCharArray()));
         assertTrue(StringUtils.isPalindrome2("ana".toCharArray()));
         assertTrue(StringUtils.isPalindrome2("aaaannnnaaaa".toCharArray()));
         assertFalse(StringUtils.isPalindrome2("amna".toCharArray()));
