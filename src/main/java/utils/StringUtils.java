@@ -94,4 +94,40 @@ public class StringUtils {
         // No palindromes found
         return "";
     }
+
+
+    public static Map.Entry<Integer, String> longestRepeatingSubstring(final String input) {
+
+        final ArrayList<Character> chars = new ArrayList<>();
+        final char[] charArray = input.toCharArray();
+        for (int i = 0; i < charArray.length; i++) {
+            chars.add(charArray[i]);
+        }
+
+        final HashMap<Integer, String> substringMap = new HashMap<>();
+        final HashSet<Character> substringChars = new HashSet<>();
+
+        final StringBuilder stringBuilder = new StringBuilder();
+        Character currentChar;
+        String substring;
+        for (int i = 0; i < chars.size(); i++) {
+            for (int j = i; j < chars.size(); j++) {
+                currentChar = chars.get(j);
+                if (substringChars.add(currentChar)) {
+                    stringBuilder.append(currentChar);
+                } else {
+                    break;
+                }
+            }
+
+            substring = stringBuilder.toString();
+            substringMap.putIfAbsent(substring.length(), substring);
+            stringBuilder.setLength(0);
+            substringChars.clear();
+        }
+
+        return substringMap.entrySet().stream()
+                .max(Comparator.comparingInt(Map.Entry::getKey))
+                .orElse(Map.entry(0, ""));
+    }
 }

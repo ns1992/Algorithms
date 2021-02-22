@@ -2,6 +2,8 @@ package utils;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class StringUtilsTest {
@@ -82,6 +84,16 @@ class StringUtilsTest {
         assertEquals("aaaaaacaaaaaa", StringUtils.longestPalindromaticString("aaaaaacaaaaaaaaab"));
         assertEquals("aba", StringUtils.longestPalindromaticString("abacdfgdcaba"));
 
+    }
+
+
+    @Test
+    public void testLongestRepeatingSubstring() {
+        assertEquals(Map.entry(3, "abc"), StringUtils.longestRepeatingSubstring("abcabcbb"));
+        assertEquals(Map.entry(1, "b"), StringUtils.longestRepeatingSubstring("bbbbb"));
+        assertEquals(Map.entry(3, "wke"), StringUtils.longestRepeatingSubstring("pwwkew"));
+        assertEquals(Map.entry(0, ""), StringUtils.longestRepeatingSubstring(""));
+        assertEquals(Map.entry(1, " "), StringUtils.longestRepeatingSubstring(" "));
     }
 
 }
