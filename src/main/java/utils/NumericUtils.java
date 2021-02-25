@@ -32,4 +32,50 @@ public class NumericUtils {
             return 0;
         }
     }
+
+
+    public static double getMedian(final int[] arrayOne, final int[] arrayTwo) {
+        final int[] helper = new int[arrayOne.length + arrayTwo.length];
+        int currentOne = 0;
+        int currentTwo = 0;
+        int current = 0;
+
+        while (currentOne < arrayOne.length && currentTwo < arrayTwo.length) {
+            if(arrayOne[currentOne] < arrayTwo[currentTwo]) {
+                helper[current] = arrayOne[currentOne];
+                currentOne++;
+            } else {
+                helper[current] = arrayTwo[currentTwo];
+                currentTwo++;
+            }
+            current++;
+        }
+
+        // Find and sort remainders
+        int remainderStartIndex = 0;
+        int[] remainderArray;
+        if (currentOne == arrayOne.length) {
+            remainderStartIndex = currentTwo;
+            remainderArray = arrayTwo;
+        } else {
+            remainderStartIndex = currentOne;
+            remainderArray = arrayOne;
+        }
+
+        final int remainder = remainderArray.length - remainderStartIndex;
+        for(int i = 0; i < remainder; i++ ) {
+            helper[current + i] = remainderArray[remainderStartIndex + i];
+        }
+
+        if(helper.length % 2 == 0) {
+            final int middleIndex = (helper.length - 1) / 2;
+            final int middleValueLower = helper[middleIndex];
+            final int middleValueHigher = helper[middleIndex + 1];
+            final double middleDiff = (middleValueHigher - middleValueLower) / 2.0;
+            return middleValueLower + middleDiff;
+        } else {
+            final int middleIndex = helper.length / 2;
+            return helper[middleIndex];
+        }
+    }
 }
