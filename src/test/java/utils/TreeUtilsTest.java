@@ -9,10 +9,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class TreeUtilsTest {
 
+    // First tree
     private Node root;
     private Node node1;
     private Node node2;
@@ -20,6 +21,14 @@ class TreeUtilsTest {
     private Node node1b;
     private Node node2a;
     private Node node2b;
+
+    // Second tree
+    private Node rootSecond;
+    private Node node1Second;
+    private Node node2Second;
+    private Node node1aSecond;
+    private Node node1bSecond;
+    private Node node2aSecond;
 
     @BeforeEach
     public void setup() {
@@ -51,6 +60,34 @@ class TreeUtilsTest {
 
         node2.left = node2a;
         node2.right = node2b;
+
+
+        // Second Tree
+        rootSecond = new Node("RootSecond");
+        rootSecond.value = 0;
+
+        //First level
+        node1Second = new Node("1");
+        node1Second.value = 15;
+        node2Second = new Node("2");
+        node2Second.value = 5;
+
+        //Second level
+        node1aSecond = new Node("1a");
+        node1aSecond.value = 5;
+        node1bSecond = new Node("1b");
+        node1bSecond.value = 17;
+        node2aSecond = new Node("2a");
+        node2aSecond.value = 3;
+
+        // Construct
+        rootSecond.left = node1Second;
+        rootSecond.right = node2Second;
+
+        node1Second.left = node1aSecond;
+        node1Second.right = node1bSecond;
+
+        node2Second.left = node2aSecond;
     }
 
     @Test
@@ -269,5 +306,53 @@ class TreeUtilsTest {
         actualTraverseOrder = TreeUtils.dfs(root, 8, TraversalType. POSTORDER);
         assertEquals(expectedTraversalOrder, actualTraverseOrder.getTraverseSequence());
         assertEquals(node2a, actualTraverseOrder.getTargetNode().get());
+    }
+
+    @Test
+    public void testSameTree() {
+        // Equal tree
+        assertTrue(TreeUtils.sameTree(root, root));
+
+        // Single node
+        assertTrue(TreeUtils.sameTree(node2a, node2a));
+
+        // Different size trees
+        assertFalse(TreeUtils.sameTree(node2a, node1a));
+        assertFalse(TreeUtils.sameTree(root, rootSecond));
+
+
+        // Test where one is null and the other is not
+        final Node firstTree = new Node("1");
+        firstTree.value = 1;
+
+        final Node firstNode = new Node("2");
+        firstNode.value = 2;
+        firstTree.left = firstNode;
+        firstTree.right = null;
+
+        final Node secondTree = new Node("1");
+        secondTree.value = 1;
+
+        final Node secondNode = new Node("2");
+        secondNode.value = 2;
+        secondTree.left = null;
+        secondTree.right = secondNode;
+
+        assertFalse(TreeUtils.sameTree(firstTree, secondTree));
+
+        // Test that they are equal considering null children
+        firstTree.left = null;
+        firstTree.right = firstNode;
+        secondTree.left = null;
+        secondTree.right = secondNode;
+        assertTrue(TreeUtils.sameTree(firstTree, secondTree));
+
+        // Test that values are considered when null nodes are present
+        firstTree.left = null;
+        firstTree.right = firstNode;
+        secondTree.left = null;
+        secondTree.right = secondNode;
+        secondTree.right.value = 10;
+        assertFalse(TreeUtils.sameTree(firstTree, secondTree));
     }
 }

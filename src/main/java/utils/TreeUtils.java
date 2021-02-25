@@ -5,6 +5,8 @@ import searching.tree.Node;
 import searching.tree.NodeSequence;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
@@ -233,5 +235,53 @@ public class TreeUtils {
         }
 
         return null; // Not found
+    }
+
+
+    /**
+     * Checks if two Binary Trees are equal
+     * Note: Takes into consideration the node positions in the tree, not just the values
+     * E.g. 1, null, 3  !=  1, 3
+     *
+     * @param rootOne First tree
+     * @param rootTwo Tree to compare against
+     * @return true if equal
+     */
+    public static boolean sameTree(final Node rootOne, final Node rootTwo) {
+        final ArrayDeque<Optional<Node>> firstNodes = new ArrayDeque<>();
+        final ArrayDeque<Optional<Node>> secondNodes = new ArrayDeque<>();
+
+
+        firstNodes.add(Optional.ofNullable(rootOne));
+        secondNodes.add(Optional.ofNullable(rootTwo));
+        while (!firstNodes.isEmpty() && !secondNodes.isEmpty()) {
+            final Optional<Node> optionalFirst = firstNodes.removeFirst();
+            final Optional<Node> optionalSecond = secondNodes.removeFirst();
+
+
+            // If both are null, check the next set of nodes
+            if(optionalFirst.isEmpty() && optionalSecond.isEmpty()) continue;
+
+            // If one is null, it's a mismatch
+            if(optionalFirst.isEmpty() || optionalSecond.isEmpty()) {
+                return false;
+            }
+
+            // Else check the values
+            final Node currentFirst = optionalFirst.get();
+            final Node currentSecond = optionalSecond.get();
+
+            if (currentFirst.value != currentSecond.value) {
+                return false;
+            }
+
+            firstNodes.add(Optional.ofNullable(currentFirst.left));
+            firstNodes.add(Optional.ofNullable(currentFirst.right));
+
+            secondNodes.add(Optional.ofNullable(currentSecond.left));
+            secondNodes.add(Optional.ofNullable(currentSecond.right));
+        }
+
+        return firstNodes.isEmpty() && secondNodes.isEmpty();
     }
 }
