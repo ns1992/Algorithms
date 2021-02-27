@@ -1,5 +1,7 @@
 package utils;
 
+import java.util.HashMap;
+
 public class NumericUtils {
 
     public static int reverseBasicInt(int x) {
@@ -77,5 +79,60 @@ public class NumericUtils {
             final int middleIndex = helper.length / 2;
             return helper[middleIndex];
         }
+    }
+
+
+    // On^2
+
+    /**
+     * 'twoSum' problem
+     * Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+     * You may assume that each input would have exactly one solution, and you may not use the same element twice.
+     * You can return the answer in any order.
+     *
+     * Brute force solution is O(n^2) time and O(n) space
+     *
+     * Since there are O(n^2) possible pairs, this takes O(n^2) time in the worst case.
+     * This solution uses only O(1) space, since no auxiliary structures are created.
+     *
+     * @param input input elements
+     * @param target target sum
+     * @return indices of the two numbers such that they add up to target.
+     */
+    public static int[] twoSumBrute(final int[] input, final int target) {
+        for (int i = 0; i < input.length; i++) {
+            for (int j = i + 1; j < input.length; j++) {
+                if (target == input[i] + input[j]) {
+                    return new int[]{i, j};
+                }
+            }
+        }
+
+        // no solution
+        return new int[]{};
+    }
+
+    /**
+     * Uses a hashmap to achieve O(n) time and space
+     *
+     * Time O(n): We traverse the list containing n elements only once. Each look up in the table costs only O(1) time.
+     * Space complexity  O(n): The extra space required depends on the number of items stored in the hash table, which stores at most n elements.
+     *
+     * @param input input elements
+     * @param target target sum
+     * @return indices of the two numbers such that they add up to target.
+     */
+    public static int[] twoSumHash(final int[] input, final int target) {
+        final HashMap<Integer, Integer> indexMap = new HashMap<>();
+        for (int i = 0; i < input.length; i++) {
+            final int complement = target - input[i];
+            if (indexMap.containsKey(complement)) {
+                return new int[]{indexMap.get(complement), i};
+            }
+            indexMap.put(input[i], i);
+        }
+
+        // no solution
+        return new int[]{};
     }
 }
