@@ -38,6 +38,21 @@ public class MergeSort {
         }
 
 
+        // Copy the remaining elements
+        // Firstly remember that at this point both halves of the array are fully sorted within their own halves.
+        // ~~ We have just been choosing which from the left vs the right is smaller to fill the target array.
+        // Secondly, remember that we are sorting in place; the helper array is a copy of the target array.
+        // Thirdly, an array is sorted in ascending order and filled from 'front' to 'back'.
+        //
+        // Easiest way to envision why this is needed is to:-
+        // 1. Picture every element on the right side of the helper array being less than every element on the left.
+        // ~~ In this case, we overwrite the left half of the target array with the right half of the helper array.
+        // Then, we have to fill the rest of the target array up with the remaining left half of the helper array.
+        //
+        // 2. Picture the opposite; every element on the right side of the helper array being greater than the left half.
+        // ~~ In this case, all the left elements will be copied to the target array.
+        // But as we are sorting in place, all the right elements are already present in order in the target array.
+        // Remember the right half will be sorted! So no need for any 'remaining' copies
         int remaining = middle - hL;
         for(int i = 0; i <= remaining; i++) {
             array[current + i] = helper[hL + i];
