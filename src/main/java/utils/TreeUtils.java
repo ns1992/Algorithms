@@ -5,7 +5,6 @@ import searching.tree.Node;
 import searching.tree.NodeSequence;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -238,6 +237,34 @@ public class TreeUtils {
     }
 
 
+    public static Node findTree(final Node root, final int toFind) {
+        if(root != null) {
+            if(root.value == toFind) {
+                return root;
+            }
+
+            // Search left side
+            if(root.left != null) {
+                final Node tree = findTree(root.left, toFind);
+                if(null != tree) {
+                    return tree;
+                }
+            }
+
+            // Search right side
+            if(root.right != null) {
+                final Node tree = findTree(root.right, toFind);
+                if(null != tree) {
+                    return tree;
+                }
+            }
+        }
+
+        // not found
+        return null;
+    }
+
+
     /**
      * Checks if two Binary Trees are equal
      * Note: Takes into consideration the node positions in the tree, not just the values
@@ -283,5 +310,32 @@ public class TreeUtils {
         }
 
         return firstNodes.isEmpty() && secondNodes.isEmpty();
+    }
+
+    public static long sum(final Node root) {
+        if(root != null) {
+            return root.value + sum(root.right) + sum(root.left);
+        }
+
+        return 0;
+    }
+
+
+    public static long average(final Node root) {
+        final ArrayDeque<Node> arrayDeque = new ArrayDeque<>();
+
+        int count = 0;
+        double sum = 0;
+        arrayDeque.addFirst(root);
+        while (!arrayDeque.isEmpty()) {
+            final Node current = arrayDeque.removeFirst();
+            sum += current.value;
+            count++;
+
+            if(null != current.left) arrayDeque.add(current.left);
+            if(null != current.right) arrayDeque.add(current.right);
+        }
+
+        return count > 0 ? Math.round(sum/count) : count;
     }
 }

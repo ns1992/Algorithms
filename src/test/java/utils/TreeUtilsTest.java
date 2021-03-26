@@ -355,4 +355,26 @@ class TreeUtilsTest {
         secondTree.right.value = 10;
         assertFalse(TreeUtils.sameTree(firstTree, secondTree));
     }
+
+    @Test
+    public void testAverage() {
+        assertEquals(6, TreeUtils.average(root));
+        assertEquals(5, TreeUtils.average(node1a));
+        assertEquals(10, TreeUtils.average(node2));
+    }
+
+    @Test
+    public void testSum() {
+
+        assertEquals(41, TreeUtils.sum(root));
+        assertEquals(5, TreeUtils.sum(node1a));
+        assertEquals(29, TreeUtils.sum(node2));
+    }
+
+    @Test
+    public void testFindTree() {
+        assertEquals(node1a, TreeUtils.findTree(root, 5));
+        assertEquals(node2b, TreeUtils.findTree(root, 19));
+        assertNull(TreeUtils.findTree(root, 100));
+    }
 }
