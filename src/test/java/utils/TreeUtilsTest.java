@@ -365,7 +365,6 @@ class TreeUtilsTest {
 
     @Test
     public void testSum() {
-
         assertEquals(41, TreeUtils.sum(root));
         assertEquals(5, TreeUtils.sum(node1a));
         assertEquals(29, TreeUtils.sum(node2));

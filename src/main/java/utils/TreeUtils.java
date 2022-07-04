@@ -131,7 +131,6 @@ public class TreeUtils {
             currentNode = stack.pop();
             traverseOrder.accept(currentNode);
             if (currentNode.value == toFind) {
-
                 return currentNode;
             }
 
@@ -245,17 +244,17 @@ public class TreeUtils {
 
             // Search left side
             if(root.left != null) {
-                final Node tree = findTree(root.left, toFind);
-                if(null != tree) {
-                    return tree;
+                final Node resultFromLeftBranch = findTree(root.left, toFind);
+                if(null != resultFromLeftBranch) {
+                    return resultFromLeftBranch;
                 }
             }
 
             // Search right side
             if(root.right != null) {
-                final Node tree = findTree(root.right, toFind);
-                if(null != tree) {
-                    return tree;
+                final Node resultFromRightBranch = findTree(root.right, toFind);
+                if(null != resultFromRightBranch) {
+                    return resultFromRightBranch;
                 }
             }
         }
