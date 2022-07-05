@@ -7,6 +7,7 @@ import searching.tree.NodeSequence;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -88,6 +89,48 @@ class TreeUtilsTest {
         node1Second.right = node1bSecond;
 
         node2Second.left = node2aSecond;
+    }
+
+
+    @Test
+    public void testBreadthFirstSearch() {
+        List<Node> expectedTraversalOrder;
+        List<Node> actualTraversalOrder = new ArrayList<>();
+
+        expectedTraversalOrder = Collections.singletonList(root);
+        Node foundNode = TreeUtils.breadthFirstSearch(root, 0, actualTraversalOrder::add);
+        assertEquals(root, foundNode);
+        assertEquals(expectedTraversalOrder, actualTraversalOrder);
+
+        actualTraversalOrder.clear();
+        expectedTraversalOrder = Arrays.asList(root, node1, node2);
+        foundNode = TreeUtils.breadthFirstSearch(root, 2, actualTraversalOrder::add);
+        assertEquals(node2, foundNode);
+        assertEquals(expectedTraversalOrder, actualTraversalOrder);
+
+        actualTraversalOrder.clear();
+        expectedTraversalOrder = Arrays.asList(root, node1, node2, node1a, node1b);
+        foundNode = TreeUtils.breadthFirstSearch(root, 6, actualTraversalOrder::add);
+        assertEquals(node1b, foundNode);
+        assertEquals(expectedTraversalOrder, actualTraversalOrder);
+
+        actualTraversalOrder.clear();
+        expectedTraversalOrder = Arrays.asList(root, node1, node2, node1a, node1b, node2a);
+        foundNode = TreeUtils.breadthFirstSearch(root, 8, actualTraversalOrder::add);
+        assertEquals(node2a, foundNode);
+        assertEquals(expectedTraversalOrder, actualTraversalOrder);
+
+        actualTraversalOrder.clear();
+        expectedTraversalOrder = Arrays.asList(root, node1, node2, node1a, node1b, node2a, node2b);
+        foundNode = TreeUtils.breadthFirstSearch(root, 19, actualTraversalOrder::add);
+        assertEquals(node2b, foundNode);
+        assertEquals(expectedTraversalOrder, actualTraversalOrder);
+
+        actualTraversalOrder.clear();
+        expectedTraversalOrder = Arrays.asList(root, node1, node2, node1a, node1b, node2a, node2b);
+        foundNode = TreeUtils.breadthFirstSearch(root, 200, actualTraversalOrder::add);
+        assertNull(foundNode);
+        assertEquals(expectedTraversalOrder, actualTraversalOrder);
     }
 
     @Test

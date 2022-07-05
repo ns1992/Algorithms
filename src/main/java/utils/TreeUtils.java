@@ -107,6 +107,42 @@ public class TreeUtils {
 
 
     /**
+     * In Breadth first search we explore all nodes at the present depth and then proceed to exploring the nodes at
+     * the next depth level
+     * <p>
+     * Method:-
+     * Push the root
+     * Pop current node and accept it
+     * Add the left child to the queue
+     * Add the right child to the queue
+     *
+     *
+     * @param root          node to start searching
+     * @param toFind        value to search for
+     * @param traverseOrder Consumer on traversal
+     * @return First Node containing the value if found, else null
+     */
+    public static Node breadthFirstSearch(final Node root, final int toFind, final Consumer<Node> traverseOrder) {
+        Node currentNode = root;
+        final ArrayDeque<Node> stack = new ArrayDeque<>();
+
+        stack.add(currentNode);
+        while (!stack.isEmpty()) {
+            currentNode = stack.pop();
+
+            traverseOrder.accept(currentNode);
+            if(currentNode.value == toFind) {
+                return currentNode;
+            }
+
+            if(currentNode.left != null) stack.add(currentNode.left);
+            if(currentNode.right != null) stack.add(currentNode.right);
+        }
+
+        return null; // Not found
+    }
+
+    /**
      * In preorder traversal, we traverse the root first, then the left and finally the right subtrees.
      * <p>
      * Method:-
