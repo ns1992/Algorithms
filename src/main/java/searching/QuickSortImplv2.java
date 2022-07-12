@@ -6,18 +6,19 @@ import utils.SearchUtils;
  * Quick Sort is a divide and conquer algorithm that involves picking an element to be
  * the pivot and partitioning the array so all the elements on one side are less than the pivot
  * and on the right are greater than it. It performs this recursively to sort the entire array.
- * <p>
+ *
  * In contrast to Merge sort, Quick Sort is an in-place sort so has a space complexity of O(1).
  * It also does not fully sort each sub-array. Merge sort will have a sub-array
  * of {1,2,3,4,5,6} whereas Quick sort may have (pivot of 4) {3,1,2,4,6,5}.
- * <p>
+ *
  * This property also means it is not a stable sort as elements can move once the sub-arrays are
  * stitched back together.
- * <p>
- * Space: O(1)
+ *
+ * Space: O(n^2)
+ * Best Case: O(nlogn)
  * Average Case: O(nlogn)
  * Worst Case: O(n^2)
- * <p>
+ *
  * This version of QuickSort picks the pivot at the end of the array for simplicity's sake.
  */
 public class QuickSortImplv2 implements QuickSort {
