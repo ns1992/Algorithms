@@ -1,5 +1,17 @@
 package searching;
 
+/**
+ * The time complexity for Merge sort is O(nlogn) which makes it an efficient algorithm for large datasets.
+ * However, the space complexity is O(n) which means it is not the most *memory* efficient for large datasets.
+ *
+ * Merge sort is also a stable sort (the order of equal elements in the initial input will be preserved).
+ *
+ *
+ * Space: O(n)
+ * Best Case: O(nlogn)
+ * Average Case: O(nlogn)
+ * Worst Case: O(nlogn)
+ */
 public class MergeSort {
 
 

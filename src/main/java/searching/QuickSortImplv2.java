@@ -7,14 +7,14 @@ import utils.SearchUtils;
  * the pivot and partitioning the array so all the elements on one side are less than the pivot
  * and on the right are greater than it. It performs this recursively to sort the entire array.
  *
- * In contrast to Merge sort, Quick Sort is an in-place sort so has a space complexity of O(1).
+ * In contrast to Merge sort, Quick Sort is an in-place sort so has a space complexity of O(logn) - (it would be O(1) but for the space required for recursion).
  * It also does not fully sort each sub-array. Merge sort will have a sub-array
  * of {1,2,3,4,5,6} whereas Quick sort may have (pivot of 4) {3,1,2,4,6,5}.
  *
  * This property also means it is not a stable sort as elements can move once the sub-arrays are
  * stitched back together.
  *
- * Space: O(n^2)
+ * Space: O(logn)
  * Best Case: O(nlogn)
  * Average Case: O(nlogn)
  * Worst Case: O(n^2)
